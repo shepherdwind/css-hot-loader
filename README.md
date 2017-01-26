@@ -1,0 +1,66 @@
+### CSS Hot Loader
+
+[![NPM version][npm-image]][npm-url]
+[![npm download][download-image]][download-url]
+
+[npm-image]: http://img.shields.io/npm/v/css-hot-loader.svg?style=flat-square
+[npm-url]: http://npmjs.org/package/css-hot-loader
+[download-image]: https://img.shields.io/npm/dm/css-hot-loader.svg?style=flat-square
+[download-url]: https://npmjs.org/package/css-hot-loader
+
+
+This is a css hot loader, which supprot hot module replacement for an extracted css file.
+
+### Why we need css hot loader
+
+In most cases, we can realize css hot reload by [style-loader](https://github.com/webpack/style-loader) . But style-loader need inject style tag into document, Before js ready, the web page will have no any style. That is not good experience.
+
+Also, a lots of people thought about that, How can realize hot reload with
+extract-text-webpack-plugin. For example [#30](https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/30) , [#!89](https://github.com/webpack-contrib/extract-text-webpack-plugin/pull/89).
+
+So I write this loader, which supprot hot module replacement for an extracted css file.
+
+### Install
+
+First install package from npm
+
+```sh
+$ npm install css-hot-loader --save-dev
+```
+
+Then config webpack.config.js
+
+```javascript
+  module: {
+    loaders: [{
+      test: /\.less$/,
+      loaders: [
+        'css-hot-loader',
+        'extract-text-webpack-plugin',
+        'less',
+        ...
+       ],
+      include: path.join(__dirname, 'src')
+    }]
+  }
+```
+
+`css-hot-loader` should be the first loader before `extract-text-webpack-plugin`.
+
+### How
+
+
+The realization principle of this loader is very simple. There are some assumed condition:
+
+1. css required by js , so css also be a js file
+2. The name of css file, which need hot reload , is the same as js file excuted.
+
+The secend assumption is often established. If you use extract-text-webpack-plugin , entry `foo.js` will extract css file `foo.css`. This principle will help us to locate the url of css file extracted.
+
+Because every css file will be a js module , every css file change can affect a module change. CSS hot loader will accept this kind change, then find extracted css file by `document.currentScript`.
+
+So when a css file changed, We just need find which css file link element, and reload css file.
+
+### License
+
+(The MIT License)
