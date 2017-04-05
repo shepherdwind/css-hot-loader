@@ -21,6 +21,13 @@ function getLinkElement() {
   return element;
 }
 
+function reloadAll() {
+  document.querySelectorAll('link').forEach(el => {
+    const src = el.href.split('?')[0];
+    el.href = src + '?' + Date.now();
+  });
+}
+
 module.exports = function() {
   if (typeof document === 'undefined') {
     return;
@@ -31,5 +38,7 @@ module.exports = function() {
   if (el) {
     el.href = src + '?' + Date.now();
     console.log('[HMR] css reload %s', src);
+  } else {
+    reloadAll();
   }
 };

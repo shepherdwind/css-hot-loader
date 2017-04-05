@@ -47,6 +47,24 @@ Then config webpack.config.js
 
 `css-hot-loader` should be the first loader before `extract-text-webpack-plugin`.
 
+### webpack 2.x
+
+Config file example should like this
+
+```
+module: {
+  rules: [
+    {
+      test: /\.css$/,
+      use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: 'css-loader'
+      })),
+    },
+  ]
+}
+```
+
 ### How
 
 
