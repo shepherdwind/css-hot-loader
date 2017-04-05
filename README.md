@@ -51,7 +51,7 @@ Then config webpack.config.js
 
 Config file example should like this
 
-```
+```javascript
 module: {
   rules: [
     {
