@@ -1,3 +1,5 @@
+var normalizeUrl = require('normalize-url');
+
 var getCurrentScriptUrl = function() {
   var src;
   if (document) {
@@ -8,44 +10,67 @@ var getCurrentScriptUrl = function() {
       src = scripts[scripts.length - 1].src;
     }
   }
-  return function() {
-    return src.replace('.js', '.css');
+
+  return function(fileMap) {
+    var splitResult = /([^\\/]+)\.js$/.exec(src);
+    var filename = splitResult && splitResult[1];
+    if (!filename) {
+      return [src.replace('.js', '.css')];
+    }
+    return fileMap.split(',').map(function(mapRule) {
+      var reg = new RegExp(filename + '\\.js$', 'g')
+      return normalizeUrl(src.replace(reg, mapRule.replace(/{fileName}/g, filename) + '.css'));
+    });
   };
 }
 
 var getScriptSrc = getCurrentScriptUrl();
 
-function getLinkElement() {
-  var element;
-  var src = getScriptSrc();
+function reloadStyle(src) {
   var elements = document.querySelectorAll('link');
+  var loaded = false;
   for (var i = 0, el = null; el = elements[i]; i++) {
-    if (el.href.indexOf(src) > -1) {
-      element = el;
+    var url = getReloadUrl(el.href, src);
+    if (url) {
+      el.href = url + '?' + Date.now();
+      loaded = true;
     }
   }
-  return element;
+  return loaded;
+}
+
+function getReloadUrl(href, src) {
+  href = normalizeUrl(href);
+  var ret;
+  src.some(function(url) {
+    if (href.indexOf(src) > -1) {
+      ret = url;
+    }
+  });
+  return ret;
 }
 
 function reloadAll() {
   var elements = document.querySelectorAll('link');
   for (var i = 0, el = null; el = elements[i]; i++) {
-    const src = el.href.split('?')[0];
+    var src = el.href.split('?')[0];
     el.href = src + '?' + Date.now();
   }
 }
 
-module.exports = function() {
-  if (typeof document === 'undefined') {
-    return;
-  }
+module.exports = function(options) {
+  return function() {
+    if (typeof document === 'undefined') {
+      return;
+    }
 
-  var src = getScriptSrc();
-  var el = getLinkElement();
-  if (el) {
-    el.href = src + '?' + Date.now();
-    console.log('[HMR] css reload %s', src);
-  } else {
-    reloadAll();
+    var src = getScriptSrc(options.fileMap);
+    var reloaded = reloadStyle(src);
+    if (reloaded) {
+      console.log('[HMR] css reload %s', src.join(' '));
+    } else {
+      console.log('[HMR] css reload all css');
+      reloadAll();
+    }
   }
 };

@@ -1,3 +1,7 @@
+### 1.1.0 / 2017-05-14
+
+- Add option fileMap, fix [#3](https://github.com/shepherdwind/css-hot-loader/issues/3)
+
 ### 1.0.3 / 2017-05-05
 
 - IE11 compatibility [!2](https://github.com/shepherdwind/css-hot-loader/pull/2)

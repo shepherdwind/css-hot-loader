@@ -65,6 +65,22 @@ module: {
 }
 ```
 
+### options
+
+#### fileMap
+
+Option to define you css file reload rule.
+
+For example `'css-hot-loader?fileMap='../css/{fileName}'` , which mean
+
+```
+js/foo.js => css/foo.css
+```
+
+Default value is `{fileName}`.
+
+see [#3](https://github.com/shepherdwind/css-hot-loader/issues/3).
+
 ### How
 
 
