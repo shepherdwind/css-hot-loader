@@ -69,7 +69,7 @@ module: {
 
 #### fileMap
 
-Option to define you css file reload rule.
+Option to define you css file reload rule. Since 1.1.0 .
 
 For example `'css-hot-loader?fileMap='../css/{fileName}'` , which mean
 
