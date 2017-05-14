@@ -4,7 +4,7 @@
   "description": "css hot reload work with extract-text-webpack-plugin",
   "main": "index.js",
   "scripts": {
-    "pub": "npm version && npm publish && git push origin && git push origin --tags",
+    "pub": "npm version patch && npm publish && git push origin && git push origin --tags",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "homepage": "http://git.shepherdwind.com/css-hot-loader/",
