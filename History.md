@@ -1,3 +1,7 @@
+### 1.1.1 / 2017-05-18
+
+- Use loaderUtils.stringifyRequest to fix error path on windows [!6](https://github.com/shepherdwind/css-hot-loader/pull/6) by @dannsam
+
 ### 1.1.0 / 2017-05-14
 
 - Add option fileMap, fix [#3](https://github.com/shepherdwind/css-hot-loader/issues/3)
@@ -5,6 +9,7 @@
 ### 1.0.3 / 2017-05-05
 
 - IE11 compatibility [!2](https://github.com/shepherdwind/css-hot-loader/pull/2)
+by @extronics
 
 ### 1.0.2 / 2017-04-05
 
