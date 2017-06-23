@@ -32,7 +32,12 @@ function reloadStyle(src) {
   for (var i = 0, el = null; el = elements[i]; i++) {
     var url = getReloadUrl(el.href, src);
     if (url) {
-      el.href = url + '?' + Date.now();
+      var newEl = el.cloneNode();
+      newEl.addEventListener('load', function () {
+        el.remove();
+      });
+      newEl.href = src + '?' + Date.now();
+      el.parentNode.insertBefore(newEl, el.nextSibling);
       loaded = true;
     }
   }
@@ -52,10 +57,15 @@ function getReloadUrl(href, src) {
 
 function reloadAll() {
   var elements = document.querySelectorAll('link');
-  for (var i = 0, el = null; el = elements[i]; i++) {
-    var src = el.href.split('?')[0];
-    el.href = src + '?' + Date.now();
-  }
+  elements.forEach(function (el) {
+    var newEl = el.cloneNode(),
+      src = el.href.split('?')[0];
+    newEl.addEventListener('load', function () {
+      el.remove();
+    });
+    newEl.href = src + '?' + Date.now();
+    el.parentNode.insertBefore(newEl, el.nextSibling);
+  })
 }
 
 module.exports = function(options) {
@@ -69,7 +79,7 @@ module.exports = function(options) {
     if (reloaded) {
       console.log('[HMR] css reload %s', src.join(' '));
     } else {
-      console.log('[HMR] css reload all css');
+      console.log('[HMR] Reload all css');
       reloadAll();
     }
   }
