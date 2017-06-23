@@ -1,3 +1,7 @@
+### 1.2.0 / 2017-06-23
+
+- Applying styles without site jerking [!9](https://github.com/shepherdwind/css-hot-loader/pull/9) by @nvlad
+
 ### 1.1.1 / 2017-05-18
 
 - Use loaderUtils.stringifyRequest to fix error path on windows [!6](https://github.com/shepherdwind/css-hot-loader/pull/6) by @dannsam
