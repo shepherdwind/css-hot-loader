@@ -19,7 +19,7 @@ var getCurrentScriptUrl = function() {
     }
     return fileMap.split(',').map(function(mapRule) {
       var reg = new RegExp(filename + '\\.js$', 'g')
-      return normalizeUrl(src.replace(reg, mapRule.replace(/{fileName}/g, filename) + '.css'));
+      return normalizeUrl(src.replace(reg, mapRule.replace(/{fileName}/g, filename) + '.css'), { stripWWW: false });
     });
   };
 }
@@ -52,7 +52,7 @@ function reloadStyle(src) {
 }
 
 function getReloadUrl(href, src) {
-  href = normalizeUrl(href);
+  href = normalizeUrl(href, { stripWWW: false });
   var ret;
   src.some(function(url) {
     if (href.indexOf(src) > -1) {
