@@ -1,5 +1,7 @@
 ### CSS Hot Loader
 
+[![build status][travis-image]][travis-url]
+[![Test coverage][coveralls-image]][coveralls-url]
 [![NPM version][npm-image]][npm-url]
 [![npm download][download-image]][download-url]
 
@@ -7,6 +9,10 @@
 [npm-url]: http://npmjs.org/package/css-hot-loader
 [download-image]: https://img.shields.io/npm/dm/css-hot-loader.svg?style=flat-square
 [download-url]: https://npmjs.org/package/css-hot-loader
+[travis-image]: https://img.shields.io/travis/shepherdwind/css-hot-loader.svg?style=flat-square
+[travis-url]: https://travis-ci.org/shepherdwind/css-hot-loader
+[coveralls-image]: https://img.shields.io/coveralls/shepherdwind/css-hot-loader.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/shepherdwind/css-hot-loader?branch=master
 
 
 This is a css hot loader, which supprot hot module replacement for an extracted css file.
