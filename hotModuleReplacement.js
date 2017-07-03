@@ -1,14 +1,16 @@
 var normalizeUrl = require('normalize-url');
+var srcByModuleId = Object.create(null);
 
-var getCurrentScriptUrl = function() {
-  var src;
-  if (document) {
+var getCurrentScriptUrl = function(moduleId) {
+  var src = srcByModuleId[moduleId];
+  if (!src && document) {
     if (document.currentScript) {
       src = document.currentScript.src;
     } else {
       var scripts = document.getElementsByTagName('script');
       src = scripts[scripts.length - 1].src;
     }
+    srcByModuleId[moduleId] = src;
   }
 
   return function(fileMap) {
@@ -23,8 +25,6 @@ var getCurrentScriptUrl = function() {
     });
   };
 }
-
-var getScriptSrc = getCurrentScriptUrl();
 
 function updateCss(el, url) {
   var newEl = el.cloneNode();
@@ -69,7 +69,8 @@ function reloadAll() {
   }
 }
 
-module.exports = function(options) {
+module.exports = function(moduleId, options) {
+  var getScriptSrc = getCurrentScriptUrl(moduleId);
   return function() {
     if (typeof document === 'undefined') {
       return;
