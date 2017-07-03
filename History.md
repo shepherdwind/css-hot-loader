@@ -1,3 +1,8 @@
+### 1.3.0 / 2017-07-03
+
+- Add support for commons chunk [#12](https://github.com/shepherdwind/css-hot-loader/pull/12) by @tfoxy
+- Fix error when use a local host [#11](https://github.com/shepherdwind/css-hot-loader/pull/11) by @tfoxy
+
 ### 1.2.0 / 2017-06-23
 
 - Applying styles without site jerking [!9](https://github.com/shepherdwind/css-hot-loader/pull/9) by @nvlad

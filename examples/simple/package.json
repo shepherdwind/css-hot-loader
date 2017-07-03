@@ -15,9 +15,8 @@
     "css-loader": "^0.28.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
-    "style-loader": "^0.16.1",
+    "style-loader": "^0.18.2",
     "webpack": "^2.3.3",
     "webpack-dev-server": "^2.4.2"
   }
 }
-
