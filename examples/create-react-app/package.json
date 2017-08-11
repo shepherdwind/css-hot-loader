@@ -1,0 +1,22 @@
+{
+  "name": "css-hot-reload-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-scripts": "1.0.11"
+  },
+  "devDependencies": {
+    "css-hot-loader": "^1.3.0",
+    "react-app-rewired": "^1.1.0"
+  }
+}
