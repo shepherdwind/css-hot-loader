@@ -1,3 +1,7 @@
+### 1.3.1 / 2017-09-04
+
+- Use var instead of const for IE10 [#17](https://github.com/shepherdwind/css-hot-loader/pull/17)
+
 ### 1.3.0 / 2017-07-03
 
 - Add support for commons chunk [#12](https://github.com/shepherdwind/css-hot-loader/pull/12) by @tfoxy
