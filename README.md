@@ -37,6 +37,32 @@ $ npm install css-hot-loader --save-dev
 Then config webpack.config.js
 
 ```javascript
+module: {
+  rules: [
+    {
+      test: /\.css$/,
+      use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: 'css-loader'
+      })),
+    },
+  ]
+}
+```
+
+`css-hot-loader` should be the first loader before `extract-text-webpack-plugin`.
+
+### Attention
+
+This plugin require the output css file name static. If output file name depend
+on css content, for example `'bundle.[name].[contenthash].css'`, HMR reload will
+fail, more detail refer to [#21](https://github.com/shepherdwind/css-hot-loader/issues/21).
+
+### webpack 1.x
+
+Config file example should like this
+
+```javascript
   module: {
     loaders: [{
       test: /\.less$/,
@@ -49,26 +75,6 @@ Then config webpack.config.js
       include: path.join(__dirname, 'src')
     }]
   }
-```
-
-`css-hot-loader` should be the first loader before `extract-text-webpack-plugin`.
-
-### webpack 2.x
-
-Config file example should like this
-
-```javascript
-module: {
-  rules: [
-    {
-      test: /\.css$/,
-      use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: 'css-loader'
-      })),
-    },
-  ]
-}
 ```
 
 ### options
