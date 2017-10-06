@@ -27,12 +27,13 @@ var getCurrentScriptUrl = function(moduleId) {
 }
 
 function updateCss(el, url) {
-  if (!el.href || !el.href.endsWith('css')) return;
-
-  var newEl = el.cloneNode();
   if (!url) {
     url = el.href.split('?')[0];
   }
+
+  if (!url || !url.endsWith('.css')) return;
+
+  var newEl = el.cloneNode();
   newEl.addEventListener('load', function () {
     el.remove();
   });
