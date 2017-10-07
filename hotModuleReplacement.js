@@ -31,7 +31,7 @@ function updateCss(el, url) {
     url = el.href.split('?')[0];
   }
 
-  if (!url || !url.endsWith('.css')) return;
+  if (!url || !(url.indexOf('.css') > -1)) return;
 
   var newEl = el.cloneNode();
   newEl.addEventListener('load', function () {
@@ -47,13 +47,13 @@ function updateCss(el, url) {
 function reloadStyle(src) {
   var elements = document.querySelectorAll('link');
   var loaded = false;
-  for (let i = 0, el = null; el = elements[i]; i++) {
-    let url = getReloadUrl(el.href, src);
+  [].slice.call(elements).forEach(function(el) {
+    var url = getReloadUrl(el.href, src);
     if (url) {
       updateCss(el, url);
       loaded = true;
     }
-  }
+  });
   return loaded;
 }
 
@@ -70,9 +70,9 @@ function getReloadUrl(href, src) {
 
 function reloadAll() {
   var elements = document.querySelectorAll('link');
-  for (let i = 0, el = null; el = elements[i]; i++) {
+  [].slice.call(elements).forEach(function(el) {
     updateCss(el);
-  }
+  });
 }
 
 module.exports = function(moduleId, options) {

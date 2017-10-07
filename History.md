@@ -1,3 +1,7 @@
+### 1.3.2 / 2017-10-07
+
+- memory leak fix, only reload css files [#22](https://github.com/shepherdwind/css-hot-loader/pull/22) by @nickaversano
+
 ### 1.3.1 / 2017-09-04
 
 - Use var instead of const for IE10 [#17](https://github.com/shepherdwind/css-hot-loader/pull/17)
