@@ -27,11 +27,17 @@ var getCurrentScriptUrl = function(moduleId) {
 }
 
 function updateCss(el, url) {
-  var newEl = el.cloneNode();
   if (!url) {
     url = el.href.split('?')[0];
   }
+
+  if (!url || !url.endsWith('.css')) return;
+
+  var newEl = el.cloneNode();
   newEl.addEventListener('load', function () {
+    el.remove();
+  });
+  newEl.addEventListener('error', function () {
     el.remove();
   });
   newEl.href = url + '?' + Date.now();
@@ -41,8 +47,8 @@ function updateCss(el, url) {
 function reloadStyle(src) {
   var elements = document.querySelectorAll('link');
   var loaded = false;
-  for (var i = 0, el = null; el = elements[i]; i++) {
-    var url = getReloadUrl(el.href, src);
+  for (let i = 0, el = null; el = elements[i]; i++) {
+    let url = getReloadUrl(el.href, src);
     if (url) {
       updateCss(el, url);
       loaded = true;
@@ -64,7 +70,7 @@ function getReloadUrl(href, src) {
 
 function reloadAll() {
   var elements = document.querySelectorAll('link');
-  for (var i = 0, el = null; el = elements[i]; i++) {
+  for (let i = 0, el = null; el = elements[i]; i++) {
     updateCss(el);
   }
 }
