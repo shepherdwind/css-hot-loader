@@ -41,7 +41,7 @@ function updateCss(el, url) {
     el.remove();
   });
   newEl.href = url + '?' + Date.now();
-  el.parentNode.insertBefore(newEl, el.nextSibling);
+  el.parentNode.replaceChild(newEl, el)
 }
 
 function reloadStyle(src) {
