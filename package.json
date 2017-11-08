@@ -1,6 +1,6 @@
 {
   "name": "css-hot-loader",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "css hot reload work with extract-text-webpack-plugin",
   "main": "index.js",
   "scripts": {
