@@ -1,3 +1,7 @@
+### 1.3.3 / 2017-11-08
+
+- Replace css link instead of adding new one [#24](https://github.com/shepherdwind/css-hot-loader/pull/24)
+
 ### 1.3.2 / 2017-10-07
 
 - memory leak fix, only reload css files [#22](https://github.com/shepherdwind/css-hot-loader/pull/22) by @nickaversano
