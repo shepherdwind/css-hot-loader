@@ -8,14 +8,19 @@ let config = { // config object
     output: './src/index.js', // entry file
   },
   output: { // output
-    path: path.resolve(__dirname, 'dist'), // ouput path
-    filename: '[name].js',
+    path: path.resolve(__dirname, '.'), // ouput path
+    filename: 'dist/[name].js',
   },
   module: {
     rules: [
       {
         test: /\.css/,
-        use: ['css-hot-loader'].concat(ExtractTextWebpackPlugin.extract({  // HMR for styles
+        use: [{
+          loader: 'css-hot-loader',
+          options: {
+            fileMap: '../css/{fileName}',
+          },
+        }].concat(ExtractTextWebpackPlugin.extract({  // HMR for styles
           fallback: 'style-loader',
           use: ['css-loader'],
         })),
@@ -23,11 +28,11 @@ let config = { // config object
     ] // end rules
   },
   plugins: [ // webpack plugins
-    new ExtractTextWebpackPlugin('[name].css'),
+    new ExtractTextWebpackPlugin('css/[name].css'),
     new webpack.optimize.CommonsChunkPlugin({ name: 'common' }),
   ],
   devServer: {
-    contentBase: path.resolve(__dirname, 'dist'),
+    contentBase: path.resolve(__dirname, '.'),
     inline: true,
     compress: true, // Enable gzip compression for everything served:
     hot: true // Enable webpack's Hot Module Replacement feature
