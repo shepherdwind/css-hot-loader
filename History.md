@@ -1,3 +1,7 @@
+### 1.3.5 / 2017-12-24
+
+- Refactor hotModuleReplacement [#27](https://github.com/shepherdwind/css-hot-loader/pull/27) by @GeorgeTaveras1231
+
 ### 1.3.3 / 2017-11-08
 
 - Replace css link instead of adding new one [#24](https://github.com/shepherdwind/css-hot-loader/pull/24)
