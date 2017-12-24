@@ -1,9 +1,14 @@
 var normalizeUrl = require('normalize-url');
 var srcByModuleId = Object.create(null);
 
+var noDocument = typeof document === 'undefined';
+var slice = Array.prototype.slice;
+var noop = function () {}
+
 var getCurrentScriptUrl = function(moduleId) {
   var src = srcByModuleId[moduleId];
-  if (!src && document) {
+
+  if (!src) {
     if (document.currentScript) {
       src = document.currentScript.src;
     } else {
@@ -47,7 +52,8 @@ function updateCss(el, url) {
 function reloadStyle(src) {
   var elements = document.querySelectorAll('link');
   var loaded = false;
-  [].slice.call(elements).forEach(function(el) {
+
+  slice.call(elements).forEach(function(el) {
     var url = getReloadUrl(el.href, src);
     if (url) {
       updateCss(el, url);
@@ -70,18 +76,20 @@ function getReloadUrl(href, src) {
 
 function reloadAll() {
   var elements = document.querySelectorAll('link');
-  [].slice.call(elements).forEach(function(el) {
+  slice.call(elements).forEach(function(el) {
     updateCss(el);
   });
 }
 
 module.exports = function(moduleId, options) {
-  var getScriptSrc = getCurrentScriptUrl(moduleId);
-  return function() {
-    if (typeof document === 'undefined') {
-      return;
-    }
+  var getScriptSrc;
 
+  if (noDocument) {
+    return noop;
+  }
+
+  getScriptSrc = getCurrentScriptUrl(moduleId);
+  return function() {
     var src = getScriptSrc(options.fileMap);
     var reloaded = reloadStyle(src);
     if (reloaded) {
