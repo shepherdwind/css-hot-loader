@@ -2,7 +2,8 @@ var normalizeUrl = require('normalize-url');
 var srcByModuleId = Object.create(null);
 
 var noDocument = typeof document === 'undefined';
-var slice = Array.prototype.slice;
+var forEach = Array.prototype.forEach;
+
 var noop = function () {}
 
 var getCurrentScriptUrl = function(moduleId) {
@@ -53,13 +54,14 @@ function reloadStyle(src) {
   var elements = document.querySelectorAll('link');
   var loaded = false;
 
-  slice.call(elements).forEach(function(el) {
+  forEach.call(elements, function(el) {
     var url = getReloadUrl(el.href, src);
     if (url) {
       updateCss(el, url);
       loaded = true;
     }
   });
+
   return loaded;
 }
 
@@ -76,7 +78,7 @@ function getReloadUrl(href, src) {
 
 function reloadAll() {
   var elements = document.querySelectorAll('link');
-  slice.call(elements).forEach(function(el) {
+  forEach.call(elements, function(el) {
     updateCss(el);
   });
 }
