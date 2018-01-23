@@ -17,7 +17,7 @@ var getCurrentScriptUrl = function(moduleId) {
       var lastScriptTag = scripts[scripts.length - 1];
 
       if (lastScriptTag) {
-        src = scripts[scripts.length - 1].src;
+        src = lastScriptTag.src;
       }
     }
     srcByModuleId[moduleId] = src;

@@ -1,3 +1,7 @@
+### 1.3.6 / 2018-01-23
+
+- Safe access to 'src' of the last "script" tag[#30](https://github.com/shepherdwind/css-hot-loader/pull/30)
+
 ### 1.3.5 / 2017-12-24
 
 - Refactor hotModuleReplacement [#27](https://github.com/shepherdwind/css-hot-loader/pull/27) by @GeorgeTaveras1231
