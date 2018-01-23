@@ -14,7 +14,11 @@ var getCurrentScriptUrl = function(moduleId) {
       src = document.currentScript.src;
     } else {
       var scripts = document.getElementsByTagName('script');
-      src = scripts[scripts.length - 1].src;
+      var lastScriptTag = scripts[scripts.length - 1];
+
+      if (lastScriptTag) {
+        src = scripts[scripts.length - 1].src;
+      }
     }
     srcByModuleId[moduleId] = src;
   }
