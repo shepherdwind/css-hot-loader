@@ -40,16 +40,26 @@ function updateCss(el, url) {
   if (!url) {
     url = el.href.split('?')[0];
   }
-
+  if (el.isLoaded === false && url == el.href.split('?')[0]) {
+    // We seem to be about to replace a css link that hasn't loaded yet.
+    // We're probably changing the same file more than once.
+    return;
+  }
   if (!url || !(url.indexOf('.css') > -1)) return;
 
+  el.visited = true;
   var newEl = el.cloneNode();
+
+  newEl.isLoaded = false;
   newEl.addEventListener('load', function () {
+    newEl.isLoaded = true;
     el.remove();
   });
   newEl.addEventListener('error', function () {
+    newEl.isLoaded = true;
     el.remove();
   });
+
   newEl.href = url + '?' + Date.now();
   el.parentNode.appendChild(newEl);
 }
@@ -59,6 +69,8 @@ function reloadStyle(src) {
   var loaded = false;
 
   forEach.call(elements, function(el) {
+    if (el.visited === true) return;
+
     var url = getReloadUrl(el.href, src);
     if (url) {
       updateCss(el, url);
@@ -83,6 +95,7 @@ function getReloadUrl(href, src) {
 function reloadAll() {
   var elements = document.querySelectorAll('link');
   forEach.call(elements, function(el) {
+    if (el.visited === true) return;
     updateCss(el);
   });
 }
