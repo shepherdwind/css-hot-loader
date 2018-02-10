@@ -40,7 +40,7 @@ function updateCss(el, url) {
   if (!url) {
     url = el.href.split('?')[0];
   }
-  if (el.isLoaded === false && url == el.href.split('?')[0]) {
+  if (el.isLoaded === false) {
     // We seem to be about to replace a css link that hasn't loaded yet.
     // We're probably changing the same file more than once.
     return;
