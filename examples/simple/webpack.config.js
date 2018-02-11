@@ -5,6 +5,7 @@ const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin'); // requ
 let config = { // config object
   entry: {
     output: './src/index.js', // entry file
+    bar: './src/bar.js', // entry file
   },
   output: { // output
     path: path.resolve(__dirname, 'dist'), // ouput path
@@ -22,7 +23,7 @@ let config = { // config object
     ] // end rules
   },
   plugins: [ // webpack plugins
-    new ExtractTextWebpackPlugin('output.css'),
+    new ExtractTextWebpackPlugin('[name].css'),
   ],
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
