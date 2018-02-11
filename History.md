@@ -1,3 +1,7 @@
+### 1.3.7 / 2018-02-10
+
+- Fix issue causing multiple instances of link tags to be inserted by @aminland [!33](https://github.com/shepherdwind/css-hot-loader/pull/33)
+
 ### 1.3.6 / 2018-01-23
 
 - Safe access to 'src' of the last "script" tag[#30](https://github.com/shepherdwind/css-hot-loader/pull/30)

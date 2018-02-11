@@ -19,11 +19,11 @@ test('basic reload', () => {
   reload();
   expect(spy).toHaveBeenCalled();
 
-  expect(document.querySelectorAll('link').length === 3);
+  expect(document.querySelectorAll('link').length === 3).toBe(true);
   cb();
 
-  expect(document.querySelectorAll('link').length === 2);
-  expect(document.querySelector('link').href.indexOf('?') > -1);
+  expect(document.querySelectorAll('link').length === 2).toBe(true);
+  expect(document.querySelectorAll('link')[1].href.indexOf('?') > -1).toBe(true);
 
   spy.mockReset();
   spy.mockRestore();
@@ -40,23 +40,49 @@ test('reload mult style', () => {
   `;
   const reload = require('../hotModuleReplacement')(2, { fileMap: 'output/{fileName}', });
   const spy = jest.spyOn(EventTarget.prototype, 'addEventListener');
-  let cb;
+  const cb = [];
   spy.mockImplementation((event, _cb) => {
-    cb = _cb;
+    cb.push(_cb);
   });
   reload();
   expect(spy).toHaveBeenCalled();
 
-  expect(document.querySelectorAll('link').length === 4);
-  cb();
+  expect(document.querySelectorAll('link').length === 5).toBeTruthy();
+  cb.forEach(fn => fn());
 
-  expect(document.querySelectorAll('link').length === 3);
-  expect(document.querySelectorAll('link')[0].href.indexOf('?') > -1);
-  expect(document.querySelectorAll('link')[1].href.indexOf('?') > -1);
-  expect(document.querySelectorAll('link')[2].href.indexOf('?') === -1);
+  expect(document.querySelectorAll('link').length === 3).toBeTruthy();
+  expect(document.querySelectorAll('link')[0].href.indexOf('?') === -1).toBe(true);
+  expect(document.querySelectorAll('link')[1].href.indexOf('?') > -1).toBe(true);
+  expect(document.querySelectorAll('link')[2].href.indexOf('?') > -1).toBe(true);
 
   spy.mockReset();
   spy.mockRestore();
 
 });
 
+test('reload multiple time', () => {
+  document.body.innerHTML = `
+  <head>
+    <link href="a.css">
+    <link href="b.css">
+    <script src="a.js"></script>
+  </head>
+  `;
+  const reload = require('../hotModuleReplacement')(1, {
+    fileMap: '{fileName}',
+  });
+  const spy = jest.spyOn(EventTarget.prototype, 'addEventListener');
+  let cb;
+  spy.mockImplementation((event, _cb) => {
+    cb = _cb;
+  });
+  reload();
+  reload();
+  expect(spy).toHaveBeenCalled();
+
+  expect(document.querySelectorAll('link').length === 3).toBeTruthy();
+  cb();
+
+  spy.mockReset();
+  spy.mockRestore();
+});
