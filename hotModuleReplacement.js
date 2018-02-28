@@ -1,10 +1,11 @@
 var normalizeUrl = require('normalize-url');
 var srcByModuleId = Object.create(null);
+var debounce = require('lodash/debounce');
 
 var noDocument = typeof document === 'undefined';
 var forEach = Array.prototype.forEach;
 
-var noop = function () {}
+var noop = function () {};
 
 var getCurrentScriptUrl = function(moduleId) {
   var src = srcByModuleId[moduleId];
@@ -34,7 +35,7 @@ var getCurrentScriptUrl = function(moduleId) {
       return normalizeUrl(src.replace(reg, mapRule.replace(/{fileName}/g, filename) + '.css'), { stripWWW: false });
     });
   };
-}
+};
 
 function updateCss(el, url) {
   if (!url) {
@@ -108,7 +109,8 @@ module.exports = function(moduleId, options) {
   }
 
   getScriptSrc = getCurrentScriptUrl(moduleId);
-  return function() {
+
+  function update() {
     var src = getScriptSrc(options.fileMap);
     var reloaded = reloadStyle(src);
     if (reloaded) {
@@ -118,4 +120,6 @@ module.exports = function(moduleId, options) {
       reloadAll();
     }
   }
+
+  return debounce(update, 10);
 };
