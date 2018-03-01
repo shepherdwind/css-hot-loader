@@ -23,6 +23,7 @@
   "license": "ISC",
   "dependencies": {
     "loader-utils": "^1.1.0",
+    "lodash": "^4.17.5",
     "normalize-url": "^1.9.1"
   },
   "devDependencies": {
