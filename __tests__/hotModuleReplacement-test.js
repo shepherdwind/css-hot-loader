@@ -1,4 +1,5 @@
 'use strict';
+jest.useFakeTimers();
 
 test('basic reload', () => {
   document.body.innerHTML = `
@@ -17,6 +18,8 @@ test('basic reload', () => {
     cb = _cb;
   });
   reload();
+  jest.runAllTimers();
+
   expect(spy).toHaveBeenCalled();
 
   expect(document.querySelectorAll('link').length === 3).toBe(true);
@@ -45,6 +48,7 @@ test('reload mult style', () => {
     cb.push(_cb);
   });
   reload();
+  jest.runAllTimers();
   expect(spy).toHaveBeenCalled();
 
   expect(document.querySelectorAll('link').length === 5).toBeTruthy();
@@ -76,7 +80,9 @@ test('reload multiple time', () => {
   spy.mockImplementation((event, _cb) => {
     cb = _cb;
   });
+  jest.runAllTimers();
   reload();
+  jest.runAllTimers();
   reload();
   expect(spy).toHaveBeenCalled();
 
