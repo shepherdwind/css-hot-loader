@@ -15,7 +15,7 @@
 [coveralls-url]: https://coveralls.io/r/shepherdwind/css-hot-loader?branch=master
 
 
-This is a css hot loader, which supprot hot module replacement for an extracted css file.
+This is a css hot loader, which support hot module replacement for an extracted css file.
 
 ### Why we need css hot loader
 
