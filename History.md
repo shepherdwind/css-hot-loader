@@ -1,3 +1,7 @@
+### 1.3.9 2018-03-27
+
+- fix: Webpack 4 compatibility fix by @vagusX [!39](https://github.com/shepherdwind/css-hot-loader/pull/39)
+
 ### 1.3.8 2018-03-01
 
 - feat: using debounce for update in DOM by @53c701d [!35](https://github.com/shepherdwind/css-hot-loader/pull/35)
