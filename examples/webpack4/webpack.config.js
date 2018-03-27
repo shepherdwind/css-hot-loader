@@ -4,7 +4,7 @@ const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin'); // requ
 
 let config = { // config object
   entry: {
-    output: ['css-hot-loader/hotModuleReplacement', './src/index.js'], // entry file
+    output: ['./src/index.js'], // entry file
   },
   output: { // output
     path: path.resolve(__dirname, 'dist'), // ouput path
