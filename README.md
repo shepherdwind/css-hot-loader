@@ -58,6 +58,27 @@ This plugin require the output css file name static. If output file name depend
 on css content, for example `'bundle.[name].[contenthash].css'`, HMR reload will
 fail, more detail refer to [#21](https://github.com/shepherdwind/css-hot-loader/issues/21).
 
+### webpack 4
+
+There is an issue to work with webpack4 [#37](https://github.com/shepherdwind/css-hot-loader/issues/37).
+Please use [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin) to replace extract-text-webpack-plugin.
+Config like this:
+
+```javascript
+module: {
+  rules: [
+    {
+      test: /\.css/,
+      use: [
+        'css-hot-loader',
+        MiniCssExtractPlugin.loader,
+        'css-loader',
+      ],
+    },
+  ] // end rules
+},
+```
+
 ### webpack 1.x
 
 Config file example should like this
