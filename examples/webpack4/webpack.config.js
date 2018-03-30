@@ -1,6 +1,7 @@
 const webpack = require('webpack'); // webpack itself
 const path = require('path'); // nodejs dependency when dealing with paths
-const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin'); // require webpack plugin
+// const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin'); // require webpack plugin
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 let config = { // config object
   entry: {
@@ -10,25 +11,24 @@ let config = { // config object
     path: path.resolve(__dirname, 'dist'), // ouput path
     filename: '[name].js',
   },
+  mode: 'development',
   module: {
     rules: [
       {
         test: /\.css/,
-        use: ['css-hot-loader'].concat(ExtractTextWebpackPlugin.extract({  // HMR for styles
-          fallback: 'style-loader',
-          use: ['css-loader'],
-        })),
+        use: [
+          'css-hot-loader',
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+        ],
       },
     ] // end rules
   },
   plugins: [ // webpack plugins
-    new ExtractTextWebpackPlugin('[name].css'),
+    new MiniCssExtractPlugin('[name].css'),
   ],
-  devServer: {
-    contentBase: path.resolve(__dirname, 'dist'),
-    inline: true,
-    hot: true // Enable webpack's Hot Module Replacement feature
-  },
+  devtool: 'source-map',
+  serve: {},
 }
 
 module.exports = config;
