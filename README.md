@@ -24,7 +24,7 @@ In most cases, we can realize css hot reload by [style-loader](https://github.co
 Also, a lots of people thought about that, How can realize hot reload with
 extract-text-webpack-plugin. For example [#30](https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/30) , [#!89](https://github.com/webpack-contrib/extract-text-webpack-plugin/pull/89).
 
-So I write this loader, which supprot hot module replacement for an extracted css file.
+So I wrote this loader, which supports hot module replacement for an extracted css file.
 
 ### Install
 
