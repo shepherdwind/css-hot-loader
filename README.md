@@ -17,7 +17,9 @@
 
 This is a css hot loader, which support hot module replacement for an extracted css file.
 
-> Now, there is a extract css plugin [extract-css-chunks-webpack-plugin](https://github.com/faceyspacey/extract-css-chunks-webpack-plugin) support hot reload. If you use webpack 4+, the [extract-css-chunks-webpack-plugin](https://github.com/faceyspacey/extract-css-chunks-webpack-plugin) will be a more good choice.
+> Now, there is a extract css plugin [extract-css-chunks-webpack-plugin](https://github.com/faceyspacey/extract-css-chunks-webpack-plugin) which support hot reload. 
+> 
+> If you use webpack 4+, the [extract-css-chunks-webpack-plugin](https://github.com/faceyspacey/extract-css-chunks-webpack-plugin) will be a better choice.
 
 ### Why we need css hot loader
 
