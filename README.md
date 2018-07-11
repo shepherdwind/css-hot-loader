@@ -14,12 +14,7 @@
 [coveralls-image]: https://img.shields.io/coveralls/shepherdwind/css-hot-loader.svg?style=flat-square
 [coveralls-url]: https://coveralls.io/r/shepherdwind/css-hot-loader?branch=master
 
-
 This is a css hot loader, which support hot module replacement for an extracted css file.
-
-> Now, there is a extract css plugin [extract-css-chunks-webpack-plugin](https://github.com/faceyspacey/extract-css-chunks-webpack-plugin) which support hot reload. 
-> 
-> If you use webpack 4+, the [extract-css-chunks-webpack-plugin](https://github.com/faceyspacey/extract-css-chunks-webpack-plugin) will be a better choice.
 
 ### Why we need css hot loader
 
@@ -117,6 +112,10 @@ js/foo.js => css/foo.css
 Default value is `{fileName}`.
 
 see [#3](https://github.com/shepherdwind/css-hot-loader/issues/3).
+
+#### reloadAll
+
+Force reload all css file.
 
 ### How
 

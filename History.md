@@ -1,3 +1,7 @@
+### 1.4.0 2018-07-11
+
+- feat: support `reloadAll` config, support code split issue [#44](https://github.com/shepherdwind/css-hot-loader/issues/44)
+
 ### 1.3.9 2018-03-27
 
 - fix: Webpack 4 compatibility fix by @vagusX [!39](https://github.com/shepherdwind/css-hot-loader/pull/39)
