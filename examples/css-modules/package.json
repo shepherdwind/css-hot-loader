@@ -1,0 +1,22 @@
+{
+  "name": "css-hot-reload-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --progress",
+    "start": "NODE_ENV=development webpack-serve --port 3000 --config webpack.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-hot-loader": "latest",
+    "css-loader": "^1.0.0",
+    "mini-css-extract-plugin": "^0.4.0",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.1",
+    "webpack-serve": "^2.0.2"
+  }
+}
