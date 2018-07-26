@@ -1,3 +1,7 @@
+### 1.4.1 2018-07-26
+
+- fix: css module reload issue [#47](https://github.com/shepherdwind/css-hot-loader/pull/47) fix by [@keegan-lillo](https://github.com/keegan-lillo)
+
 ### 1.4.0 2018-07-11
 
 - feat: support `reloadAll` config, support code split issue [#44](https://github.com/shepherdwind/css-hot-loader/issues/44)
