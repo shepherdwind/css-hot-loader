@@ -14,7 +14,7 @@
     "hotModuleReplacement.js",
     "index.js"
   ],
-  "homepage": "http://git.shepherdwind.com/css-hot-loader/",
+  "homepage": "https://github.com/shepherdwind/css-hot-loader",
   "repository": {
     "type": "git",
     "url": "git://github.com/shepherdwind/css-hot-loader.git"
