@@ -117,6 +117,13 @@ see [#3](https://github.com/shepherdwind/css-hot-loader/issues/3).
 
 Force reload all css file.
 
+#### cssModule
+
+When this option is opened, every time you modify the css file, the js file will
+reload too. Default closed, this option use with css module.
+
+see [!47](https://github.com/shepherdwind/css-hot-loader/pull/47) and [!51](https://github.com/shepherdwind/css-hot-loader/pull/51)
+
 ### How
 
 
