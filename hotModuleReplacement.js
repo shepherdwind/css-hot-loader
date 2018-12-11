@@ -62,7 +62,8 @@ function updateCss(el, url) {
   });
 
   newEl.href = url + '?' + Date.now();
-  el.parentNode.appendChild(newEl);
+  // insert new <link /> right to the old one's position
+  el.parentNode.insertBefore(newEl, el.nextSibling);
 }
 
 function reloadStyle(src) {
