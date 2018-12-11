@@ -26,7 +26,7 @@ test('basic reload', () => {
   cb();
 
   expect(document.querySelectorAll('link').length === 2).toBe(true);
-  expect(document.querySelectorAll('link')[1].href.indexOf('?') > -1).toBe(true);
+  expect(document.querySelectorAll('link')[0].href.indexOf('?') > -1).toBe(true);
 
   spy.mockReset();
   spy.mockRestore();
@@ -55,9 +55,9 @@ test('reload mult style', () => {
   cb.forEach(fn => fn());
 
   expect(document.querySelectorAll('link').length === 3).toBeTruthy();
-  expect(document.querySelectorAll('link')[0].href.indexOf('?') === -1).toBe(true);
+  expect(document.querySelectorAll('link')[0].href.indexOf('?') > -1).toBe(true);
   expect(document.querySelectorAll('link')[1].href.indexOf('?') > -1).toBe(true);
-  expect(document.querySelectorAll('link')[2].href.indexOf('?') > -1).toBe(true);
+  expect(document.querySelectorAll('link')[2].href.indexOf('?') === -1).toBe(true);
 
   spy.mockReset();
   spy.mockRestore();
