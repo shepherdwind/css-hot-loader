@@ -1,3 +1,7 @@
+### 1.4.3 2018-12-12
+
+- feat: replace appendChild by insertBefore by [@focus7eleven](https://github.com/focus7eleven) [#54](https://github.com/shepherdwind/css-hot-loader/pull/54)
+
 ### 1.4.2 2018-08-15
 
 - feat: add cssModule option [!51](https://github.com/shepherdwind/css-hot-loader/pull/51)
