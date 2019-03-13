@@ -1,3 +1,7 @@
+### 1.4.4 2019-03-13
+
+- fix: replace DOM api remove to removeChild, support ie [!57](https://github.com/shepherdwind/css-hot-loader/pull/57)
+
 ### 1.4.3 2018-12-12
 
 - feat: replace appendChild by insertBefore by [@focus7eleven](https://github.com/focus7eleven) [#54](https://github.com/shepherdwind/css-hot-loader/pull/54)
