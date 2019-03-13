@@ -97,6 +97,8 @@ Config file example should like this
   }
 ```
 
+See more examples code from https://github.com/shepherdwind/css-hot-loader/tree/v1.4.3/examples
+
 ### options
 
 #### fileMap

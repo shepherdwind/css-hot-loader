@@ -45,7 +45,10 @@ const config = { // config object
     new MiniCssExtractPlugin('[name].css'),
   ],
   devtool: 'source-map',
-  serve: {},
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    hot: true,
+  },
 };
 
 module.exports = config;

@@ -1,11 +1,12 @@
 const webpack = require('webpack'); // webpack itself
 const path = require('path'); // nodejs dependency when dealing with paths
-const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin'); // require webpack plugin
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 let config = { // config object
+  mode: 'development',
   entry: {
-    common: './src/common.js',
-    output: './src/index.js', // entry file
+    a: './src/index.js', // entry file
+    b: './src/b.js',
   },
   output: { // output
     path: path.resolve(__dirname, '.'), // ouput path
@@ -15,29 +16,44 @@ let config = { // config object
     rules: [
       {
         test: /\.css/,
-        use: [{
-          loader: 'css-hot-loader',
-          options: {
-            fileMap: '../css/{fileName}',
+        use: [
+          {
+            loader: 'css-hot-loader',
+            options: {
+              fileMap: '../css/{fileName}',
+              reloadAll: true,
+            },
           },
-        }].concat(ExtractTextWebpackPlugin.extract({  // HMR for styles
-          fallback: 'style-loader',
-          use: ['css-loader'],
-        })),
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+        ],
       },
     ] // end rules
   },
+
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        common: {
+          name: "common",
+          chunks: "all",
+          minChunks: 2,
+          minSize: 0,
+        },
+      }
+    }
+  },
+
   plugins: [ // webpack plugins
-    new ExtractTextWebpackPlugin('css/[name].css'),
-    new webpack.optimize.CommonsChunkPlugin({ name: 'common' }),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css',
+      chunkFilename: "css/[id].css",
+    }),
   ],
   devServer: {
     contentBase: path.resolve(__dirname, '.'),
-    inline: true,
-    compress: true, // Enable gzip compression for everything served:
     hot: true // Enable webpack's Hot Module Replacement feature
   },
-  devtool: 'eval-source-map', // enable devtool for better debugging experience
 }
 
 module.exports = config;
