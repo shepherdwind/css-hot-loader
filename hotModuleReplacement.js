@@ -54,11 +54,14 @@ function updateCss(el, url) {
   newEl.isLoaded = false;
   newEl.addEventListener('load', function () {
     newEl.isLoaded = true;
-    el.remove();
+    newEl.parentNode.removeChild(el);
   });
+
   newEl.addEventListener('error', function () {
     newEl.isLoaded = true;
-    el.remove();
+    if (newEl.parentNode.contains(el)) {
+      newEl.parentNode.removeChild(el);
+    }
   });
 
   newEl.href = url + '?' + Date.now();
