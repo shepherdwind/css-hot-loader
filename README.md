@@ -16,6 +16,11 @@
 
 This is a css hot loader, which support hot module replacement for an extracted css file.
 
+### No more maintenance for this repo
+
+Now the mini-css-extract-plugin now support [css hot reload](https://github.com/webpack-contrib/mini-css-extract-plugin#advanced-configuration-example) (since 0.6.x) , so that this
+plugin is no longer needed.
+
 ### Why we need css hot loader
 
 In most cases, we can realize css hot reload by [style-loader](https://github.com/webpack/style-loader) . But style-loader need inject style tag into document, Before js ready, the web page will have no any style. That is not good experience.
